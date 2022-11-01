@@ -1,0 +1,123 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='')/$value"><edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='')/$value"><edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='')/$value"><edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='')/$value"><edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='')/$value"><edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/></edmx:Reference>
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZC_CASHPOSANALYTICS_30D_CDS" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="ZC_CashPosAnalytics_30DResult" sap:semantics="aggregate" sap:label="Cash Position Analytics" sap:content-version="1">
+				<Key><PropertyRef Name="ID"/></Key><Property Name="ID" Type="Edm.String" Nullable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CompanyCode" Type="Edm.String" MaxLength="4" sap:aggregation-role="dimension" sap:display-format="UpperCase"
+					sap:text="CompanyCodeName" sap:label="Company Code"/><Property Name="BankAccount" Type="Edm.String" MaxLength="40" sap:aggregation-role="dimension" sap:display-format="UpperCase"
+					sap:label="Account Number" sap:quickinfo="Bank Account Number"/><Property Name="BankAccountCurrency" Type="Edm.String" MaxLength="5" sap:aggregation-role="dimension" sap:label="Bank Acct Currency"
+					sap:quickinfo="Bank Account Currency" sap:semantics="currency-code"/><Property Name="CertaintyLevel" Type="Edm.String" MaxLength="6" sap:aggregation-role="dimension" sap:display-format="UpperCase"
+					sap:label="Certainty Level"/><Property Name="DisplayCurrency" Type="Edm.String" MaxLength="5" sap:aggregation-role="dimension" sap:label="Display Currency"
+					sap:semantics="currency-code"/><Property Name="CompanyCodeName" Type="Edm.String" MaxLength="25" sap:label="Company Name" sap:quickinfo="Name of Company Code or Company"/><Property Name="Bank" Type="Edm.String" MaxLength="15" sap:aggregation-role="dimension" sap:display-format="UpperCase" sap:text="BankName"
+					sap:label="Bank Key"/><Property Name="BankName" Type="Edm.String" MaxLength="60" sap:label="Bank name" sap:quickinfo="Name of bank"/><Property Name="BankCountry" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:display-format="UpperCase"
+					sap:text="CountryName" sap:label="Bank Country Key"/><Property Name="CountryName" Type="Edm.String" MaxLength="50" sap:label="Country Name" sap:quickinfo="Country Name (Max. 50 Characters)"/><Property Name="BankHeadquarter" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:display-format="UpperCase"
+					sap:text="BankHeadquarterName" sap:label="Bank Group" sap:quickinfo="Bank Group ID"/><Property Name="BankHeadquarterName" Type="Edm.String" MaxLength="40" sap:label="Bank Group Name"/><Property Name="AmountInBankAccountCurrency" Type="Edm.Decimal" Precision="24" Scale="3" sap:aggregation-role="measure"
+					sap:unit="BankAccountCurrency" sap:label="Amount in Acct Crcy" sap:quickinfo="Amount in Bank Account Currency" sap:filterable="false"/><Property Name="AmountInDisplayCurrency" Type="Edm.Decimal" Precision="24" Scale="3" sap:aggregation-role="measure"
+					sap:unit="DisplayCurrency" sap:label="Amount in Dspl Crcy" sap:quickinfo="Amount in Display Currency" sap:filterable="false"/><NavigationProperty Name="Parameters" Relationship="ZC_CASHPOSANALYTICS_30D_CDS.assoc_6C61FA84192EB61CC810A1A431C85EC6"
+					FromRole="ToRole_assoc_6C61FA84192EB61CC810A1A431C85EC6" ToRole="FromRole_assoc_6C61FA84192EB61CC810A1A431C85EC6" sap:filterable="false"/></EntityType>
+			<EntityType Name="ZC_CashPosAnalytics_30DParameters" sap:semantics="parameters" sap:content-version="1">
+				<Key><PropertyRef Name="P_IntervalDays"/><PropertyRef Name="P_DisplayCurrency"/><PropertyRef Name="P_ExchangeRateType"/></Key><Property Name="P_IntervalDays" Type="Edm.Int16" Nullable="false" sap:parameter="mandatory" sap:label="INTERVAL DAY" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="P_DisplayCurrency" Type="Edm.String" Nullable="false" MaxLength="5" sap:parameter="mandatory" sap:label="Display Currency"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/><Property Name="P_ExchangeRateType" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase"
+					sap:parameter="mandatory" sap:label="Exchange Rate Type" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><NavigationProperty Name="Results" Relationship="ZC_CASHPOSANALYTICS_30D_CDS.assoc_6C61FA84192EB61CC810A1A431C85EC6"
+					FromRole="FromRole_assoc_6C61FA84192EB61CC810A1A431C85EC6" ToRole="ToRole_assoc_6C61FA84192EB61CC810A1A431C85EC6"/></EntityType>
+			<Association Name="assoc_6C61FA84192EB61CC810A1A431C85EC6" sap:content-version="1"><End Type="ZC_CASHPOSANALYTICS_30D_CDS.ZC_CashPosAnalytics_30DParameters" Multiplicity="1"
+				Role="FromRole_assoc_6C61FA84192EB61CC810A1A431C85EC6"/><End Type="ZC_CASHPOSANALYTICS_30D_CDS.ZC_CashPosAnalytics_30DResult" Multiplicity="*" Role="ToRole_assoc_6C61FA84192EB61CC810A1A431C85EC6"/></Association>
+			<EntityContainer Name="ZC_CASHPOSANALYTICS_30D_CDS_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true"
+				sap:supported-formats="atom json xlsx"><EntitySet Name="ZC_CashPosAnalytics_30DResults" EntityType="ZC_CASHPOSANALYTICS_30D_CDS.ZC_CashPosAnalytics_30DResult"
+				sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="ZC_CashPosAnalytics_30D" EntityType="ZC_CASHPOSANALYTICS_30D_CDS.ZC_CashPosAnalytics_30DParameters" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+				<AssociationSet Name="assoc_6C61FA84192EB61CC810A1A431C85EC6"
+					Association="ZC_CASHPOSANALYTICS_30D_CDS.assoc_6C61FA84192EB61CC810A1A431C85EC6" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="ZC_CashPosAnalytics_30D" Role="FromRole_assoc_6C61FA84192EB61CC810A1A431C85EC6"/><End EntitySet="ZC_CashPosAnalytics_30DResults" Role="ToRole_assoc_6C61FA84192EB61CC810A1A431C85EC6"/></AssociationSet>
+			</EntityContainer>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZC_CASHPOSANALYTICS_30D_CDS.ZC_CASHPOSANALYTICS_30D_CDS_Entities">
+				<Annotation Term="Aggregation.ApplySupported">
+					<Record>
+						<PropertyValue Property="Transformations">
+							<Collection>
+								<String>aggregate</String>
+								<String>groupby</String>
+								<String>filter</String>
+							</Collection>
+						</PropertyValue><PropertyValue Property="Rollup" EnumMember="None"/></Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="ZC_CASHPOSANALYTICS_30D_CDS.ZC_CASHPOSANALYTICS_30D_CDS_Entities/ZC_CashPosAnalytics_30D">
+				<Annotation Term="Capabilities.FilterRestrictions">
+					<Record>
+						<PropertyValue Property="NonFilterableProperties">
+							<Collection>
+								<PropertyPath>P_KeyDate</PropertyPath>
+								<PropertyPath>P_IntervalDays</PropertyPath>
+								<PropertyPath>P_DisplayCurrency</PropertyPath>
+								<PropertyPath>P_ExchangeRateType</PropertyPath>
+								<PropertyPath>P_Language</PropertyPath>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.NavigationRestrictions">
+					<Record>
+						<PropertyValue Property="RestrictedProperties">
+							<Collection>
+								<Record><PropertyValue Property="NavigationProperty" NavigationPropertyPath="Parameters"/>
+									<PropertyValue Property="FilterRestrictions">
+										<Record><PropertyValue Property="Filterable" Bool="false"/></Record>
+									</PropertyValue>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.SortRestrictions">
+					<Record>
+						<PropertyValue Property="NonSortableProperties">
+							<Collection>
+								<PropertyPath>P_KeyDate</PropertyPath>
+								<PropertyPath>P_IntervalDays</PropertyPath>
+								<PropertyPath>P_DisplayCurrency</PropertyPath>
+								<PropertyPath>P_ExchangeRateType</PropertyPath>
+								<PropertyPath>P_Language</PropertyPath>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="ZC_CASHPOSANALYTICS_30D_CDS.ZC_CASHPOSANALYTICS_30D_CDS_Entities/ZC_CashPosAnalytics_30DResults">
+				<Annotation Term="Capabilities.FilterRestrictions">
+					<Record>
+						<PropertyValue Property="NonFilterableProperties">
+							<Collection>
+								<PropertyPath>ID</PropertyPath>
+								<PropertyPath>AmountInBankAccountCurrency</PropertyPath>
+								<PropertyPath>AmountInDisplayCurrency</PropertyPath>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.SortRestrictions">
+					<Record>
+						<PropertyValue Property="NonSortableProperties">
+							<Collection>
+								<PropertyPath>ID</PropertyPath>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZC_CASHPOSANALYTICS_30D_CDS/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZC_CASHPOSANALYTICS_30D_CDS/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
